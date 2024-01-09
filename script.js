@@ -222,6 +222,13 @@ function updateCumulativeProbabilities() {
   cumulativeProbabilities = calculateCumulativeProbabilities();
 }
 
+function updateTotalItemsDisplay() {
+    const totalItemsElement = document.getElementById("totalItems");
+    const totalItems = Object.values(itemCounts).reduce((total, count) => total + count, 0);
+    const formattedTotalItems = formatNumberWithCommas(totalItems);
+    totalItemsElement.textContent = `Total Items: ${formattedTotalItems}`;
+}
+
 function collectItem() {
   const item = getRandomItem();
   itemCounts[item.name]++;
@@ -290,6 +297,10 @@ updateRarityIndex();
 
 // Load the game state
 loadGameState();
+
+// Update item display
+updateTotalItemsDisplay();
+setInterval(updateTotalItemsDisplay, 1)
 
 // Set up a timer to automatically collect items super fast IGNORE THIS PLEASE
 setInterval(collectItem, 1);
