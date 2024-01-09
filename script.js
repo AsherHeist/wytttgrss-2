@@ -206,6 +206,12 @@ function getRandomItem() {
   return items[low];
 }
 
+function updateTotalStats() {
+    const statsAmount = items.length;
+    const htmlThing = document.getElementById("totalStats");
+    htmlThing.innerHTML = `There are currently ${statsAmount} different stats in the game <3`
+}
+
 function calculateCumulativeProbabilities() {
   const cumulativeProbabilities = [];
   let cumulativeProbability = 0;
@@ -301,6 +307,9 @@ loadGameState();
 // Update item display
 updateTotalItemsDisplay();
 setInterval(updateTotalItemsDisplay, 1)
+
+// set stat amount at top
+updateTotalStats();
 
 // Set up a timer to automatically collect items super fast IGNORE THIS PLEASE
 setInterval(collectItem, 1);
